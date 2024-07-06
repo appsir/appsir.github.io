@@ -1,0 +1,144 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    background-color: #222;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #444;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #ff6eaf;
+    font-family: 'Press Start 2P', cursive;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.intro, .trailer, .description, .features, .screenshots {
+    margin-bottom: 40px;
+}
+
+.intro .image-container {
+    text-align: center;
+}
+
+.intro .image-container img {
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #ffcc00;
+}
+
+.intro .platform-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.intro .platform-links a {
+  font-size: 28px; /* Adjust the font size as needed */
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.intro .platform-links span {
+    color: #fff;
+}
+
+h2, h3 {
+    font-size: 1.5em;
+    color: #a020f0; /* purple color for headers */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 5px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.trailer iframe {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.description p, .features p, .feature p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.features .feature {
+    margin-bottom: 20px;
+}
+
+.screenshots img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border: 5px solid #3e83d1;
+}
+
+footer {
+    background-color: #222;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid #444;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .intro .platform-links {
+        flex-direction: column;
+    }
+
+    .intro .platform-links a {
+        margin: 5px 0;
+    }
+
+    .trailer iframe {
+        width: 100%;
+    }
+
+    .description p, .features p, .feature p {
+        font-size: 0.9em;
+    }
+}
