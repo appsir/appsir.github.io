@@ -341,3 +341,6 @@ html.exe-mode img, html.exe-mode iframe { filter: invert(1) hue-rotate(180deg); 
 /* coming soon card */
 .new-burst.soon { font-size: 13px; }
 .game .coming-soon { font-family: var(--ui); font-weight: 700; font-size: 13px; text-align: center; padding: 10px 8px; background: var(--grey-l); color: #222; border: 1px dashed var(--grey-d); text-transform: uppercase; letter-spacing: .04em; }
+
+/* desktop: welcome first; mobile keeps games first */
+@media (min-width: 861px) { #welcome { order: -1; } }
