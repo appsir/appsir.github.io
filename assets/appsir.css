@@ -363,3 +363,5 @@ html.exe-mode img, html.exe-mode iframe { filter: invert(1) hue-rotate(180deg); 
 .win .small { font-family: var(--ui); font-size: 13px; }
 .cw { margin-top: 14px !important; padding: 10px 12px; background: #fff4f8; border: 1px solid #c2185b; font-family: var(--ui); font-size: 13.5px; }
 .cw b { display: block; color: #a00040; margin-bottom: 2px; }
+.game-hero + .win-body .coming-soon { font-family: var(--ui); font-weight: 700; font-size: 13px; padding: 10px 14px; background: var(--grey-l); border: 1px dashed var(--grey-d); text-transform: uppercase; letter-spacing: .04em; display: inline-block; }
+.taskbar .coming-soon { margin-left: auto; font-family: var(--ui); font-weight: 700; font-size: 12px; padding: 8px 10px; background: var(--grey-l); border: 1px dashed var(--grey-d); text-transform: uppercase; }
