@@ -231,14 +231,14 @@ a:hover { color: #ff0000; }
 .notepad pre .warn { color: #c00; font-weight: 700; }
 
 /* guestbook */
-.guestbook form { display: grid; gap: 10px; }
-.guestbook label { font-family: var(--ui); font-size: 13px; font-weight: 700; display: grid; gap: 4px; }
-.guestbook input, .guestbook textarea, .guestbook select {
+.guestbook form, .cform { display: grid; gap: 10px; }
+.guestbook label, .cform label { font-family: var(--ui); font-size: 13px; font-weight: 700; display: grid; gap: 4px; }
+.guestbook input, .guestbook textarea, .guestbook select, .cform input, .cform textarea, .cform select {
   font: 16px var(--fun); padding: 6px 8px; border: 0; background: #fff; width: 100%; border-radius: 0;
   box-shadow: inset 1px 1px var(--grey-d), inset -1px -1px var(--white), inset 2px 2px var(--grey-dd), inset -2px -2px var(--grey-l);
 }
-.guestbook textarea { min-height: 90px; resize: vertical; }
-.guestbook .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.guestbook textarea, .cform textarea { min-height: 120px; resize: vertical; }
+.guestbook .row, .cform .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
 
 /* footer */
 .footer { color: #fff; text-align: center; padding: 10px 0 40px; font-size: 14px; }
@@ -351,3 +351,15 @@ html.exe-mode img, html.exe-mode iframe { filter: invert(1) hue-rotate(180deg); 
 .legal .facts dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #555; }
 .legal .facts dd { margin: 2px 0 0; font-weight: 700; font-size: 15px; overflow-wrap: anywhere; }
 @media (max-width: 640px) { .legal .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.cform .small { font-family: var(--ui); font-size: 12px; font-weight: 400; color: #444; }
+.legal .buttons88 { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 8px 0 0; }
+.legal > h2:first-child { border-top: 0; margin-top: 0; padding-top: 0; }
+
+/* Cursed Game Dev Simulator */
+.stores.one { grid-template-columns: minmax(0, 180px); }
+.taskbar .stores.one { max-width: 170px; }
+.theme-cursed .game-hero { background: #f2f2f2; }
+.win .small { font-family: var(--ui); font-size: 13px; }
+.cw { margin-top: 14px !important; padding: 10px 12px; background: #fff4f8; border: 1px solid #c2185b; font-family: var(--ui); font-size: 13.5px; }
+.cw b { display: block; color: #a00040; margin-bottom: 2px; }

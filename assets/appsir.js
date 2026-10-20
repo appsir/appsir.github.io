@@ -54,6 +54,20 @@
     location.href = "mailto:hello@appsirgames.com?subject=" + encodeURIComponent("Guestbook entry from " + name) + "&body=" + encodeURIComponent(body);
   });
 
+
+  /* contact form: composes an email */
+  var cf = $("#contact-form");
+  if (cf) cf.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = cf.elements;
+    var name = f.name.value.trim() || "A visitor";
+    var lines = [f.message.value.trim()];
+    if (f.game.value) lines.push("", "Game: " + f.game.value);
+    if (f.email.value.trim()) lines.push("Reply to: " + f.email.value.trim());
+    lines.push("", "~ " + name);
+    location.href = "mailto:hello@appsirgames.com?subject=" + encodeURIComponent(f.topic.value + " from " + name) + "&body=" + encodeURIComponent(lines.join("\n"));
+  });
+
   /* dialog box */
   var dlg;
   function dialog(title, msg) {
