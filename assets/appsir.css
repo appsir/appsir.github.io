@@ -365,3 +365,7 @@ html.exe-mode img, html.exe-mode iframe { filter: invert(1) hue-rotate(180deg); 
 .cw b { display: block; color: #a00040; margin-bottom: 2px; }
 .game-hero + .win-body .coming-soon { font-family: var(--ui); font-weight: 700; font-size: 13px; padding: 10px 14px; background: var(--grey-l); border: 1px dashed var(--grey-d); text-transform: uppercase; letter-spacing: .04em; display: inline-block; }
 .taskbar .coming-soon { margin-left: auto; font-family: var(--ui); font-weight: 700; font-size: 12px; padding: 8px 10px; background: var(--grey-l); border: 1px dashed var(--grey-d); text-transform: uppercase; }
+
+/* pre-order badge: same height as the other store badges (180x60 vs 203x60) */
+.stores img.pre { width: 88.67%; }
+.stores.lg img.pre { width: auto; }
