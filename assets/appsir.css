@@ -369,3 +369,6 @@ html.exe-mode img, html.exe-mode iframe { filter: invert(1) hue-rotate(180deg); 
 /* pre-order badge: same height as the other store badges (180x60 vs 203x60) */
 .stores img.pre { width: 88.67%; }
 .stores.lg img.pre { width: auto; }
+
+/* homebrew itch.io cards */
+.game .itch-btn { display: block; text-align: center; font-family: var(--ui); font-weight: 700; text-decoration: none; color: #000 !important; }
