@@ -20,6 +20,7 @@ a:hover { color: #ff0000; }
 
 .monitor {
   position: relative;
+  container-type: inline-size;
   width: min(98vw, calc((100vh - 16px) * 759 / 591));
   aspect-ratio: 759 / 591;
 }
@@ -353,6 +354,24 @@ a:hover { color: #ff0000; }
   padding: 20px;
 }
 .off-note[hidden] { display: none; }
+
+.bootlog {
+  position: absolute;
+  left: 14.36%;
+  top: 14.05%;
+  width: 71.67%;
+  height: 70.2%;
+  margin: 0;
+  padding: 3% 4%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  color: #c0c0c0;
+  font: 2cqw/1.25 "Courier New", Courier, monospace;
+  cursor: default;
+}
+.bootlog[hidden] { display: none; }
+.bootlog b { color: #fff; font-weight: normal; }
 
 .sparkle { position: fixed; pointer-events: none; z-index: 9999; font-size: 14px; color: #ffff00; animation: fall .8s linear forwards; }
 @keyframes fall { to { transform: translateY(26px) scale(.3); opacity: 0; } }

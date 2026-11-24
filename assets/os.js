@@ -13,10 +13,9 @@
   function small() { return window.innerWidth <= 760; }
 
   // ---------- boot and shut down ----------
-  var onFrames = [], loadFrames = [], offFrames = [];
+  var onFrames = [], offFrames = [];
   var i;
   for (i = 0; i < 7; i++) onFrames.push("images/os/on" + i + ".png");
-  for (i = 0; i < 32; i++) loadFrames.push("images/os/load" + i + ".png");
   for (i = 0; i < 4; i++) offFrames.push("images/os/off" + i + ".png");
 
   function preload(list) {
@@ -47,13 +46,77 @@
     setTimeout(function () { screen.classList.remove("waking"); }, 600);
   }
 
+  var bootLog = $("#bootlog");
+  var bootLines = [
+    "<b>AppSir BIOS v1.09</b>",
+    "Copyright (C) AppSir, Inc.",
+    "",
+    "CPU: AppSir 486DX2-66",
+    "MEMTEST",
+    "",
+    "Detecting drives...",
+    "  Primary Master: APPSIR HDD 540MB",
+    "  Secondary Master: CD-ROM",
+    "",
+    "Loading AppSirOS...",
+    "  HIMEM.SYS .......... OK",
+    "  MOUSE.COM .......... OK",
+    "  PET.EXE ............ OK",
+    "  AIDE.EXE ........... OK",
+    "",
+    "<b>Starting AppSirOS...</b>"
+  ];
+  var logTimer = null;
+
+  function endBoot() {
+    clearInterval(logTimer);
+    logTimer = null;
+    bootLog.hidden = true;
+    bootLog.innerHTML = "";
+    showDesktop();
+  }
+
+  function printLog() {
+    frame.src = "images/os/monitor.png";
+    bootLog.innerHTML = "";
+    bootLog.hidden = false;
+    var n = 0, mem = 0, memLine = null;
+    logTimer = setInterval(function () {
+      if (memLine) {
+        mem += 2048;
+        memLine.textContent = "Memory Test: " + mem + "K" + (mem >= 16384 ? " OK" : "");
+        if (mem >= 16384) memLine = null;
+        return;
+      }
+      if (n >= bootLines.length) {
+        clearInterval(logTimer);
+        logTimer = setTimeout(endBoot, 400);
+        return;
+      }
+      var line = document.createElement("div");
+      if (bootLines[n] === "MEMTEST") {
+        memLine = line;
+        line.textContent = "Memory Test: 0K";
+      } else {
+        line.innerHTML = bootLines[n] || "&nbsp;";
+      }
+      bootLog.appendChild(line);
+      n++;
+    }, 70);
+  }
+
   function boot() {
     offNote.hidden = true;
     screen.classList.add("off");
-    play(onFrames, 90, function () {
-      play(loadFrames, 55, showDesktop);
-    });
+    play(onFrames, 90, printLog);
   }
+
+  function skipBoot() {
+    clearTimeout(logTimer);
+    endBoot();
+  }
+  bootLog.addEventListener("click", skipBoot);
+  document.addEventListener("keydown", function () { if (!bootLog.hidden) skipBoot(); });
 
   function shutDown() {
     closeMenu();
@@ -71,14 +134,14 @@
   var booted = false;
   try { booted = sessionStorage.getItem("appsir-booted") === "1"; } catch (e) {}
   if (!small() && !booted) {
-    preload(onFrames.concat(loadFrames));
+    preload(onFrames);
     boot();
     try { sessionStorage.setItem("appsir-booted", "1"); } catch (e) {}
   }
   preload(offFrames);
 
   frame.addEventListener("click", function () {
-    if (screen.classList.contains("off") && offNote.hidden) showDesktop();
+    if (screen.classList.contains("off") && offNote.hidden) skipBoot();
   });
   $("#power").addEventListener("click", function () {
     if (screen.classList.contains("off")) boot();
