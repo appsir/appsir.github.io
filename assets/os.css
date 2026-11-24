@@ -373,6 +373,8 @@ a:hover { color: #ff0000; }
     border-radius: 16px;
     padding-bottom: 0;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
   }
   .icons {
     position: relative;
@@ -392,7 +394,8 @@ a:hover { color: #ff0000; }
   .w-welcome { order: 2; }
   .w-pet { order: 3; }
   .items { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .taskbar { position: static; }
+  .windows { flex: 1; }
+  .taskbar { position: static; margin-top: auto; }
   .tray .lbl { display: none; }
   .startmenu { position: absolute; left: 3px; bottom: 30px; }
   .dialog { position: fixed; }
