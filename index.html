@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div class="monitor" id="monitor">
+  <div class="monitor" id="monitor">
   <img class="frame" id="frame" src="images/os/monitor.png" alt="" width="759" height="591">
   <button class="power" id="power" type="button" aria-label="Power button"></button>
 
@@ -27,14 +27,16 @@
     <h1 class="sr-only">AppSir Games ~ Official Homepage</h1>
 
     <nav class="icons" aria-label="Desktop">
-      <a class="icon" href="#welcome" data-open="welcome"><img src="images/aide.png" alt=""><span>Welcome</span></a>
-      <a class="icon" href="#games" data-open="games"><img src="images/os/i-folder.png" alt=""><span>My Games</span></a>
-      <a class="icon" href="#lore" data-open="lore"><img src="images/os/i-notepad.png" alt=""><span>readme.txt</span></a>
+      <a class="icon" href="#welcome" data-open="welcome"><img src="images/os/p-puter.png" alt=""><span>Welcome</span></a>
+      <a class="icon" href="#games" data-open="games"><img src="images/os/p-games.png" alt=""><span>My Games</span></a>
+      <a class="icon" href="#lore" data-open="lore"><img src="images/os/p-note.png" alt=""><span>readme.txt</span></a>
       <a class="icon" href="#pet" data-open="pet"><img src="images/os/ic-pet.png" alt="" class="cat"><span>pet.exe</span></a>
-      <a class="icon" href="#guestbook" data-open="guestbook"><img src="images/os/i-mail.png" alt=""><span>Guestbook</span></a>
-      <a class="icon" href="#links" data-open="links"><img src="images/os/i-globe.png" alt=""><span>Links</span></a>
-      <a class="icon" href="#control" data-open="control"><img src="images/os/i-control.png" alt=""><span>Control Panel</span></a>
-      <a class="icon trash" href="#trash" data-open="trash"><img src="images/os/i-trash.png" alt=""><span>Recycle Bin</span></a>
+      <a class="icon" href="#guestbook" data-open="guestbook"><img src="images/os/p-mail.png" alt=""><span>Guestbook</span></a>
+      <a class="icon" href="#links" data-open="links"><img src="images/os/p-web.png" alt=""><span>Links</span></a>
+      <a class="icon" href="#control" data-open="control"><img src="images/os/p-disk.png" alt=""><span>Control Panel</span></a>
+      <a class="icon trash" href="#trash" data-open="trash"><img src="images/os/p-trash.png" alt=""><span>Recycle Bin</span></a>
+      <a class="icon" href="#micro" data-open="micro" id="ic-micro" hidden><img src="images/os/p-joy.png" alt=""><span>microgame.exe</span></a>
+      <a class="icon" href="#ghost" data-open="ghost" id="ic-ghost" hidden><img src="images/os/p-ghost.png" alt=""><span>ghost.exe</span></a>
     </nav>
 
     <div class="windows">
@@ -270,19 +272,30 @@ P.S. try the Konami code on this page.</pre>
 
     <section class="win w-trash" id="trash" data-title="Recycle Bin">
       <div class="bar"><span>Recycle Bin</span><div class="ctl"><button type="button" class="min" aria-label="Minimize">_</button><button type="button" class="x" aria-label="Close">x</button></div></div>
+      <div class="tools"><button type="button" class="btn95" id="restore" disabled>Restore</button> <button type="button" class="btn95" id="empty">Empty Recycle Bin</button></div>
       <div class="body">
         <table class="files">
-          <thead><tr><th>Name</th><th>Size</th></tr></thead>
+          <thead><tr><th>Name</th><th>Original Location</th><th>Date Deleted</th></tr></thead>
           <tbody>
-            <tr><td><button type="button" class="file" data-msg="This file restored itself. Again.">dere_old_build.exe</button></td><td>666 KB</td></tr>
-            <tr><td><button type="button" class="file" data-msg="princess.sav is corrupted. Some of it is still moving.">princess.sav</button></td><td>0 KB</td></tr>
-            <tr><td><button type="button" class="file" data-msg="Please do not open this file.">do_not_open.txt</button></td><td>1 KB</td></tr>
-            <tr><td><button type="button" class="file" data-msg="Tommy says this one is his. Leave it.">tommy_toys.zip</button></td><td>12 KB</td></tr>
+            <tr data-item="micro"><td><button type="button" class="file"><img src="images/os/p-joy.png" alt=""> microgame.exe</button></td><td>appsirgames.neocities.org</td><td>10/28/1999</td></tr>
+            <tr data-item="ghost"><td><button type="button" class="file"><img src="images/os/p-ghost.png" alt=""> ghost.exe</button></td><td>appsirgames.neocities.org/attic</td><td>10/31/1999</td></tr>
           </tbody>
         </table>
-        <p class="small">Items in the Recycle Bin cannot be deleted.</p>
+        <p class="small" id="bin-empty" hidden>The Recycle Bin is empty.</p>
       </div>
-      <div class="foot"></div>
+      <div class="foot" id="bin-count">2 object(s)</div>
+    </section>
+
+    <section class="win w-micro" id="micro" data-title="microgame.exe">
+      <div class="bar"><span>microgame.exe</span><div class="ctl"><button type="button" class="min" aria-label="Minimize">_</button><button type="button" class="x" aria-label="Close">x</button></div></div>
+      <div class="body game"><iframe data-src="microgame.html" title="microgame"></iframe></div>
+      <div class="foot">Click the game first, then use the arrow keys.</div>
+    </section>
+
+    <section class="win w-ghost" id="ghost" data-title="ghost.exe">
+      <div class="bar"><span>ghost.exe</span><div class="ctl"><button type="button" class="min" aria-label="Minimize">_</button><button type="button" class="x" aria-label="Close">x</button></div></div>
+      <div class="body game"><iframe data-src="https://appsirgames.neocities.org/textadventureplatformer.html" title="The attic"></iframe></div>
+      <div class="foot"><a href="https://appsirgames.neocities.org/textadventureplatformer.html" target="_blank">Open the attic in a new tab</a></div>
     </section>
 
     </div>
@@ -317,7 +330,7 @@ P.S. try the Konami code on this page.</pre>
     </div>
   </div>
 
-  <div class="off-note" id="off-note" hidden>It is now safe to turn off your computer.<br>Press the power button to start again.</div>
+  <div class="off-note" id="off-note" hidden>It's now safe to turn off<br>your computer.<br><br>Press the power button to start again.</div>
 </div>
 
 <script src="assets/os.js"></script>
