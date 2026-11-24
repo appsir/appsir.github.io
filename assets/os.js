@@ -103,6 +103,8 @@
     var w = win(id);
     if (!w) return;
     w.classList.add("open");
+    var fr = $("iframe[data-src]", w);
+    if (fr && !fr.getAttribute("src")) fr.src = fr.getAttribute("data-src");
     if (!taskFor(w)) {
       var b = document.createElement("button");
       b.type = "button";
@@ -121,6 +123,8 @@
 
   function close(w) {
     w.classList.remove("open", "front");
+    var fr = $("iframe[data-src]", w);
+    if (fr) fr.removeAttribute("src");
     var t = taskFor(w);
     if (t) t.remove();
   }
@@ -189,8 +193,50 @@
   }
   $("#dialog-ok").addEventListener("click", function () { dlg.hidden = true; });
 
-  $$(".file").forEach(function (f) {
-    f.addEventListener("click", function () { dialog(f.textContent, f.getAttribute("data-msg")); });
+  // ---------- recycle bin ----------
+  var restored = [];
+  try { restored = (localStorage.getItem("appsir-restored") || "").split(",").filter(Boolean); } catch (e) {}
+  var picked = null;
+  var restoreBtn = $("#restore");
+
+  function binCount() {
+    var left = $$("#trash tr[data-item]").length;
+    $("#bin-count").textContent = left + " object(s)";
+    $("#bin-empty").hidden = left > 0;
+    $("#trash .files").hidden = left === 0;
+  }
+  function putBack(item) {
+    var row = $('#trash tr[data-item="' + item + '"]');
+    if (row) row.remove();
+    $("#ic-" + item).hidden = false;
+    if (restored.indexOf(item) < 0) restored.push(item);
+    try { localStorage.setItem("appsir-restored", restored.join(",")); } catch (e) {}
+    binCount();
+  }
+  restored.forEach(putBack);
+
+  $$("#trash tr[data-item]").forEach(function (row) {
+    var f = $(".file", row);
+    f.addEventListener("click", function () {
+      $$("#trash tr").forEach(function (r) { r.classList.remove("sel"); });
+      row.classList.add("sel");
+      picked = row.getAttribute("data-item");
+      restoreBtn.disabled = false;
+    });
+    f.addEventListener("dblclick", function () { restoreBtn.click(); });
+  });
+  restoreBtn.addEventListener("click", function () {
+    if (!picked) return;
+    var item = picked;
+    picked = null;
+    restoreBtn.disabled = true;
+    putBack(item);
+    open(item, true);
+    front(win(item));
+  });
+  $("#empty").addEventListener("click", function () {
+    var row = $("#trash tr[data-item]");
+    if (row) dialog("Error Deleting File", "Cannot delete " + $(".file", row).textContent.trim() + ": Access is denied.");
   });
 
   // ---------- clock and visitors ----------
