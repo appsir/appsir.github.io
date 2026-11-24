@@ -207,8 +207,10 @@
   }
   function putBack(item) {
     var row = $('#trash tr[data-item="' + item + '"]');
-    if (row) row.remove();
-    $("#ic-" + item).hidden = false;
+    var icon = $("#ic-" + item);
+    if (!row || !icon) return;
+    row.remove();
+    icon.hidden = false;
     if (restored.indexOf(item) < 0) restored.push(item);
     try { localStorage.setItem("appsir-restored", restored.join(",")); } catch (e) {}
     binCount();
